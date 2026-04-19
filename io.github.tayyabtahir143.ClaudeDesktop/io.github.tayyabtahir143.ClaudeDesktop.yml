@@ -96,7 +96,8 @@ modules:
           # Auto-select Wayland or X11 at runtime
           - export ELECTRON_OZONE_PLATFORM_HINT="${ELECTRON_OZONE_PLATFORM_HINT:-auto}"
           # --no-sandbox: required inside Flatpak (Chrome sandbox conflicts with bwrap)
-          - exec /app/electron/electron --no-sandbox /app/claude-desktop "$@"
+          # --disable-gpu-sandbox: prevents GPU process crashes on Fedora/Wayland
+          - exec /app/electron/electron --no-sandbox --disable-gpu-sandbox /app/claude-desktop "$@"
 
       # ── Flathub metadata files ──
       - type: file
